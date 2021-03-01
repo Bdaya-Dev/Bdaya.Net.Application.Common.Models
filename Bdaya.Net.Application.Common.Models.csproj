@@ -1,7 +1,22 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+	  <PackageIcon>Bdaya.png</PackageIcon>
+	  <PackageId>Bdaya.Net.Application.Common.Models</PackageId>
+	  <Version>1.0.0</Version>
+	  <Authors>AhmedKhalil777</Authors>
+	  <Company>Bdaya-Dev</Company>
+	  <PackageDescription>A common models for the application core layer to define the generic responses models</PackageDescription>
+	  <RepositoryUrl>https://github.com/Bdaya-Dev/Bdaya.Net.Application.Common.Models</RepositoryUrl>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.3" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<None Include="Bdaya.png" Pack="true" PackagePath="\" />
+	</ItemGroup>
 
 </Project>
