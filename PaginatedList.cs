@@ -16,6 +16,10 @@ namespace Bdaya.Net.Application.Common.Models
 
 
         [JsonConstructor]
+        public PaginatedList()
+        {
+                
+        }
         public PaginatedList(List<T> items, int count, int pageIndex, int pageSize)
             => (PageIndex, TotalPages, TotalCount, Items, HasPreviousPage, HasNextPage) =
             (pageIndex, (int)Math.Ceiling(count / (double)pageSize), count, items, PageIndex > 1, PageIndex < TotalPages);
