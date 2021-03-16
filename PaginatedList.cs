@@ -2,28 +2,28 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Bdaya.Net.Application.Common.Models
 {
     public class PaginatedList<T>
     {
-        public List<T> Items { get; }
-        public int PageIndex { get; }
-        public int TotalPages { get; }
-        public int TotalCount { get; }
+        public List<T> Items { get; set; }
+        public int PageIndex { get; set; }
+        public int TotalPages { get; set; }
+        public int TotalCount { get; set; }
 
+
+        [JsonConstructor]
         public PaginatedList(List<T> items, int count, int pageIndex, int pageSize)
-        {
-            PageIndex = pageIndex;
-            TotalPages = (int)Math.Ceiling(count / (double)pageSize);
-            TotalCount = count;
-            Items = items;
-        }
+            => (PageIndex, TotalPages, TotalCount, Items, HasPreviousPage, HasNextPage) =
+            (pageIndex, (int)Math.Ceiling(count / (double)pageSize), count, items, PageIndex > 1, PageIndex < TotalPages);
 
-        public bool HasPreviousPage => PageIndex > 1;
 
-        public bool HasNextPage => PageIndex < TotalPages;
+        public bool HasPreviousPage { get; set; }
+
+        public bool HasNextPage { get; set; }
 
         public static async Task<PaginatedList<T>> CreateAsync(IQueryable<T> source, int pageIndex, int pageSize)
         {
